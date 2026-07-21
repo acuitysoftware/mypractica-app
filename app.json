@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "myPractica",
+    "slug": "mypractica_app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/favico.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash_mypractica.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6565E2"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/splash_mypractica.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#6565E2"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/favico.png",
+        "backgroundColor": "#ffffff"
+      },
+      "splash": {
+        "image": "./assets/splash_mypractica.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#6565E2"
+      },
+      "versionCode": 1,
+      "package": "com.apexknight.mypractica_app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4960cc50-5a55-4870-8393-ca3600e170bf"
+      }
+    }
+  }
+}
