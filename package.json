@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -19,12 +19,14 @@
     "@react-navigation/stack": "^7.2.10",
     "axios": "^1.9.0",
     "expo": "^54.0.27",
+    "expo-dev-client": "~6.0.21",
     "expo-file-system": "~19.0.20",
     "expo-image-picker": "~17.0.9",
     "expo-splash-screen": "~31.0.12",
     "expo-status-bar": "~3.0.9",
     "react": "19.1.0",
     "react-native": "0.81.5",
+    "react-native-element-dropdown": "^2.12.4",
     "react-native-gesture-handler": "~2.28.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-picker-select": "^9.3.1",

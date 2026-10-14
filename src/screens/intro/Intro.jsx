@@ -75,13 +75,11 @@ const Intro = ({ navigation }) => {
           </Text>
         )}
 
-        <TouchableOpacity style={styles.introButton}>
-          <Text
-            onPress={() => navigation.navigate("login")}
-            style={styles.introButtonText}
-          >
-            Get Started
-          </Text>
+        <TouchableOpacity
+          style={styles.introButton}
+          onPress={() => navigation.navigate("login")}
+        >
+          <Text style={styles.introButtonText}>Get Started</Text>
         </TouchableOpacity>
       </View>
     </View>

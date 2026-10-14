@@ -7,23 +7,24 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
-} from 'react-native';
-import React, { useContext, useState } from 'react';
-import { LoginStyles } from './styles';
-import authimg from '../../../../assets/auth-img.png';
-import CheckBox from '@react-native-community/checkbox';
-import { AuthContext } from '../../../context/AuthContext';
-import Toast from 'react-native-toast-message';
-import { loginUser } from '../../../services/auth';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+} from "react-native";
+import React, { useContext, useState } from "react";
+import { LoginStyles } from "./styles";
+import authimg from "../../../../assets/auth-img.png";
+import CheckBox from "@react-native-community/checkbox";
+import { AuthContext } from "../../../context/AuthContext";
+import Toast from "react-native-toast-message";
+import { loginUser } from "../../../services/auth";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Login = ({ navigation }) => {
-  const [role, setRole] = useState('Student');
+  const [role, setRole] = useState("Student");
   const { login } = useContext(AuthContext);
   const [rememberMe, setRememberMe] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const SubmitUserLog = async () => {
@@ -39,22 +40,22 @@ const Login = ({ navigation }) => {
       if (res.status !== false) {
         login(res.token, res);
         await Toast.show({
-          type: 'success',
+          type: "success",
           text1: res.message,
         });
         setLoading(false);
       } else {
         Toast.show({
-          type: 'error',
+          type: "error",
           text1: res.message,
         });
         setLoading(false);
       }
     } catch (error) {
       Toast.show({
-        type: 'error',
-        text1: 'Hello',
-        text2: 'Something Wrong in Login',
+        type: "error",
+        text1: "Hello",
+        text2: "Something Wrong in Login",
       });
       setLoading(false);
     }
@@ -73,7 +74,7 @@ const Login = ({ navigation }) => {
         </View>
         {loading ? (
           <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
           >
             <ActivityIndicator size="large" color="#6C63FF" />
           </View>
@@ -81,7 +82,7 @@ const Login = ({ navigation }) => {
           <View style={LoginStyles.loginContent}>
             <Text style={LoginStyles.head}>Login</Text>
             <View style={LoginStyles.radioContainer}>
-              {['Student', 'Teacher'].map((option) => (
+              {["Student", "Teacher"].map((option) => (
                 <TouchableOpacity
                   key={option}
                   style={LoginStyles.radioButton}
@@ -101,14 +102,34 @@ const Login = ({ navigation }) => {
               value={email}
               onChangeText={(text) => setEmail(text)}
             />
-            <TextInput
-              style={LoginStyles.input}
-              placeholder="Password *"
-              placeholderTextColor="#888"
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry
-            />
+            <View style={{ position: "relative" }}>
+              <TextInput
+                style={[LoginStyles.input, { paddingRight: 50 }]}
+                placeholder="Password *"
+                placeholderTextColor="#888"
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry={!showPassword}
+              />
+
+              <TouchableOpacity
+                onPress={() => setShowPassword((prev) => !prev)}
+                style={{
+                  position: "absolute",
+                  right: 15,
+                  top: 0,
+                  bottom: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <AntDesign
+                  name={showPassword ? "eye" : "eye-invisible"}
+                  size={20}
+                  color="#888"
+                />
+              </TouchableOpacity>
+            </View>
             <View style={LoginStyles.rememberRow}>
               <View style={LoginStyles.checkbox}>
                 <TouchableOpacity
@@ -127,12 +148,12 @@ const Login = ({ navigation }) => {
               </View>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('forgetemail', {
+                  navigation.navigate("forgetemail", {
                     role: role,
                     email: email,
                   })
                 }
-                style={{ marginLeft: 'auto' }}
+                style={{ marginLeft: "auto" }}
               >
                 <Text style={LoginStyles.forgotText}>Lost Your Password?</Text>
               </TouchableOpacity>
@@ -145,7 +166,7 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
             <View style={LoginStyles.signupRow}>
               <Text style={LoginStyles.signupText}>Don’t Have An Account?</Text>
-              <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+              <TouchableOpacity onPress={() => navigation.navigate("signup")}>
                 <Text style={LoginStyles.signupLink}> Sign Up</Text>
               </TouchableOpacity>
             </View>

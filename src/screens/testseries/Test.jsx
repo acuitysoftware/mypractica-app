@@ -6,16 +6,16 @@ import {
   Button,
   Alert,
   ActivityIndicator,
-} from 'react-native';
-import React, { useContext, useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { quizStyles } from './styles';
-import BackNav from '../../components/backNavigation/BackNav';
-import { Image } from 'react-native';
-import quizimg from '../../../assets/quizimg.png';
-import pracico from '../../../assets/pracico.png';
-import Timer from '../../components/Timer/Timer';
-import { useNavigation } from '@react-navigation/native';
+} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { quizStyles } from "./styles";
+import BackNav from "../../components/backNavigation/BackNav";
+import { Image } from "react-native";
+import quizimg from "../../../assets/quizimg.png";
+import pracico from "../../../assets/pracico.png";
+import Timer from "../../components/Timer/Timer";
+import { useNavigation } from "@react-navigation/native";
 import {
   fetchQuizDetails,
   fetchQuizQuestions,
@@ -23,10 +23,10 @@ import {
   fetchSeriesQuestions,
   QuizQuestionsSubmit,
   SeriesQuestionsSubmit,
-} from '../../services/exam';
-import { AuthContext } from '../../context/AuthContext';
-import Toast from 'react-native-toast-message';
-import TestSummary from './TestSummary';
+} from "../../services/exam";
+import { AuthContext } from "../../context/AuthContext";
+import Toast from "react-native-toast-message";
+import TestSummary from "./TestSummary";
 
 const Test = ({ route }) => {
   const { id, seriesid } = route.params;
@@ -41,14 +41,14 @@ const Test = ({ route }) => {
   const [openSummary, setOpenSummary] = useState(false);
   const navigation = useNavigation();
   const [offset, setOffset] = useState(0);
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [createsummary, setCreateSummary] = useState({
-    exam_name: '',
-    no_of_questions: '',
-    answered_questions: '',
-    not_answered_question: '',
-    not_visited: '',
+    exam_name: "",
+    no_of_questions: "",
+    answered_questions: "",
+    not_answered_question: "",
+    not_visited: "",
   });
 
   const quizdetailsfetch = async () => {
@@ -116,11 +116,11 @@ const Test = ({ route }) => {
 
   useEffect(() => {
     const now = new Date();
-    const formattedDate = now.toLocaleDateString('en-CA');
-    const formattedTime = now.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
+    const formattedDate = now.toLocaleDateString("en-CA");
+    const formattedTime = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
     });
 
     setDate(formattedDate);
@@ -141,17 +141,17 @@ const Test = ({ route }) => {
       const res = await SeriesQuestionsSubmit(token, data);
       if (res?.status === false) {
         Toast.show({
-          type: 'error',
+          type: "error",
           text1: res.message,
         });
         setLoading(false);
       } else {
         Toast.show({
-          type: 'success',
+          type: "success",
           text1: res.message,
         });
         setLoading(false);
-        navigation.navigate('result', {
+        navigation.navigate("result", {
           id: res?.data?.result_id,
           prof: false,
         });
@@ -159,8 +159,8 @@ const Test = ({ route }) => {
       console.log(res);
     } catch (error) {
       Toast.show({
-        type: 'error',
-        text1: 'Something Went Wrong',
+        type: "error",
+        text1: "Something Went Wrong",
       });
       console.log(error);
       setLoading(false);
@@ -168,7 +168,7 @@ const Test = ({ route }) => {
   };
   return (
     <SafeAreaView
-      style={{ flex: 1, backgroundColor: '#fff', position: 'relative' }}
+      style={{ flex: 1, backgroundColor: "#fff", position: "relative" }}
     >
       {openSummary ? (
         <TestSummary
@@ -179,7 +179,7 @@ const Test = ({ route }) => {
       ) : null}
       {loading ? (
         <View
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
           <ActivityIndicator size="large" color="#6C63FF" />
         </View>
@@ -191,7 +191,7 @@ const Test = ({ route }) => {
             <Image source={quizimg} style={quizStyles.headimage} />
             <View style={quizStyles.headinfo}>
               <Image source={pracico}></Image>
-              <Text style={{ width: '80%', fontFamily: 'Poppins_400Regular' }}>
+              <Text style={{ width: "80%", fontFamily: "Poppins_400Regular" }}>
                 {qdata?.chapter_name}
               </Text>
             </View>
@@ -201,7 +201,7 @@ const Test = ({ route }) => {
             </Text>
           </View>
           <Text style={quizStyles.quizname}>
-            {qdata?.chapter_name ? qdata?.chapter_name : 'Test Question'}
+            {qdata?.chapter_name ? qdata?.chapter_name : "Test Question"}
           </Text>
           <View style={quizStyles.timer}>
             {qdata ? (
@@ -212,19 +212,7 @@ const Test = ({ route }) => {
               />
             ) : null}
           </View>
-          <TouchableOpacity
-            onPress={() => submitQuizQuestions()}
-            style={quizStyles.submit}
-          >
-            <Text
-              style={{
-                color: '#fff',
-                fontFamily: 'Poppins_400Regular',
-              }}
-            >
-              Submit Quiz
-            </Text>
-          </TouchableOpacity>
+
           <Text style={quizStyles.noofquestions}>
             Question {offset + 1} Of {qdata?.questions_count}
           </Text>
@@ -238,26 +226,26 @@ const Test = ({ route }) => {
                     ? quizStyles.answerselect
                     : quizStyles.answer
                 }
-                onPress={() => onOptionClick(qquestions?.option_a, 'A')}
+                onPress={() => onOptionClick(qquestions?.option_a, "A")}
               >
                 <View style={quizStyles.numb}>
-                  <Text style={{ color: '#fff' }}>1</Text>
+                  <Text style={{ color: "#fff" }}>1</Text>
                 </View>
                 {qquestions?.option_a_image_path ? (
                   <Image
                     source={{ uri: qquestions?.option_a_image_path }}
-                    style={{ height: 70, width: 70, objectFit: 'cover' }}
+                    style={{ height: 70, width: 70, objectFit: "cover" }}
                   />
                 ) : null}
 
                 <Text
                   style={{
-                    fontFamily: 'Poppins_400Regular',
+                    fontFamily: "Poppins_400Regular",
                     color:
                       answers[qquestions?.id] === qquestions?.option_a
-                        ? '#fff'
-                        : '#000',
-                    width: '90%',
+                        ? "#fff"
+                        : "#000",
+                    width: "90%",
                   }}
                 >
                   {qquestions?.option_a}
@@ -270,26 +258,26 @@ const Test = ({ route }) => {
                     ? quizStyles.answerselect
                     : quizStyles.answer
                 }
-                onPress={() => onOptionClick(qquestions?.option_b, 'B')}
+                onPress={() => onOptionClick(qquestions?.option_b, "B")}
               >
                 <View style={quizStyles.numb}>
-                  <Text style={{ color: '#fff' }}>2</Text>
+                  <Text style={{ color: "#fff" }}>2</Text>
                 </View>
                 {qquestions?.option_b_image_path ? (
                   <Image
                     source={{ uri: qquestions?.option_b_image_path }}
-                    style={{ height: 70, width: 70, objectFit: 'cover' }}
+                    style={{ height: 70, width: 70, objectFit: "cover" }}
                   />
                 ) : null}
 
                 <Text
                   style={{
-                    fontFamily: 'Poppins_400Regular',
+                    fontFamily: "Poppins_400Regular",
                     color:
                       answers[qquestions?.id] === qquestions?.option_b
-                        ? '#fff'
-                        : '#000',
-                    width: '90%',
+                        ? "#fff"
+                        : "#000",
+                    width: "90%",
                   }}
                 >
                   {qquestions?.option_b}
@@ -302,26 +290,26 @@ const Test = ({ route }) => {
                     ? quizStyles.answerselect
                     : quizStyles.answer
                 }
-                onPress={() => onOptionClick(qquestions?.option_c, 'C')}
+                onPress={() => onOptionClick(qquestions?.option_c, "C")}
               >
                 <View style={quizStyles.numb}>
-                  <Text style={{ color: '#fff' }}>3</Text>
+                  <Text style={{ color: "#fff" }}>3</Text>
                 </View>
                 {qquestions?.option_c_image_path ? (
                   <Image
                     source={{ uri: qquestions?.option_c_image_path }}
-                    style={{ height: 70, width: 70, objectFit: 'cover' }}
+                    style={{ height: 70, width: 70, objectFit: "cover" }}
                   />
                 ) : null}
 
                 <Text
                   style={{
-                    fontFamily: 'Poppins_400Regular',
+                    fontFamily: "Poppins_400Regular",
                     color:
                       answers[qquestions?.id] === qquestions?.option_c
-                        ? '#fff'
-                        : '#000',
-                    width: '90%',
+                        ? "#fff"
+                        : "#000",
+                    width: "90%",
                   }}
                 >
                   {qquestions?.option_c}
@@ -334,66 +322,106 @@ const Test = ({ route }) => {
                     ? quizStyles.answerselect
                     : quizStyles.answer
                 }
-                onPress={() => onOptionClick(qquestions?.option_d, 'D')}
+                onPress={() => onOptionClick(qquestions?.option_d, "D")}
               >
                 <View style={quizStyles.numb}>
-                  <Text style={{ color: '#fff' }}>4</Text>
+                  <Text style={{ color: "#fff" }}>4</Text>
                 </View>
                 {qquestions?.option_d_image_path ? (
                   <Image
                     source={{ uri: qquestions?.option_d_image_path }}
-                    style={{ height: 70, width: 70, objectFit: 'cover' }}
+                    style={{ height: 70, width: 70, objectFit: "cover" }}
                   />
                 ) : null}
                 <Text
                   style={{
-                    fontFamily: 'Poppins_400Regular',
+                    fontFamily: "Poppins_400Regular",
                     color:
                       answers[qquestions?.id] === qquestions?.option_d
-                        ? '#fff'
-                        : '#000',
-                    width: '90%',
+                        ? "#fff"
+                        : "#000",
+                    width: "90%",
                   }}
                 >
                   {qquestions?.option_d}
                 </Text>
               </TouchableOpacity>
               <View style={quizStyles.pagination}>
+                {/* PREVIOUS */}
                 <TouchableOpacity
                   onPress={() => setOffset(offset - 1)}
-                  disabled={offset === 1 ? true : false}
-                  style={quizStyles.pgn}
+                  disabled={offset === 0}
+                  style={[quizStyles.pgn, offset === 0 && { opacity: 0.5 }]}
                 >
                   <Text
-                    style={{ color: '#fff', fontFamily: 'Poppins_400Regular' }}
+                    style={{
+                      color: "#fff",
+                      fontFamily: "Poppins_400Regular",
+                    }}
                   >
                     Previous
                   </Text>
                 </TouchableOpacity>
+
+                {/* NEXT / SAVE & SUBMIT */}
+                {offset < qdata?.questions_count - 1 ? (
+                  <TouchableOpacity
+                    style={quizStyles.pgn}
+                    onPress={() => {
+                      setOffset(offset + 1);
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "#fff",
+                        fontFamily: "Poppins_400Regular",
+                      }}
+                    >
+                      Next
+                    </Text>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    style={quizStyles.pgn}
+                    onPress={submitQuizQuestions}
+                    disabled={loading}
+                  >
+                    <Text
+                      style={{
+                        color: "#fff",
+                        fontFamily: "Poppins_400Regular",
+                      }}
+                    >
+                      {loading ? "Submitting..." : "Save & Submit"}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+
+              {/* SUBMIT QUIZ — AVAILABLE ON EVERY QUESTION */}
+              {offset < qdata?.questions_count - 1 && (
                 <TouchableOpacity
-                  style={quizStyles.pgn}
-                  onPress={() => {
-                    setOffset(offset + 1);
-                    console.log(answerdata);
-                  }}
-                  disabled={
-                    offset === qdata?.questions_count - 1 ? true : false
-                  }
+                  onPress={submitQuizQuestions}
+                  disabled={loading}
+                  style={[quizStyles.submit, loading && { opacity: 0.6 }]}
                 >
                   <Text
-                    style={{ color: '#fff', fontFamily: 'Poppins_400Regular' }}
+                    style={{
+                      color: "#fff",
+                      fontFamily: "Poppins_400Regular",
+                    }}
                   >
-                    Next
+                    {loading ? "Submitting..." : "Submit Quiz"}
                   </Text>
                 </TouchableOpacity>
-              </View>
+              )}
             </View>
           ) : (
             <Text
               style={{
-                fontFamily: 'Poppins_600SemiBold',
+                fontFamily: "Poppins_600SemiBold",
                 fontSize: 16,
-                textAlign: 'center',
+                textAlign: "center",
                 marginVertical: 20,
               }}
             >

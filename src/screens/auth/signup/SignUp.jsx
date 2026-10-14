@@ -25,6 +25,7 @@ import Toast from "react-native-toast-message";
 import { StudentRegister, TeacherRegister } from "../../../services/auth";
 import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Dropdown } from "react-native-element-dropdown";
 
 const SignUp = () => {
   const [role, setRole] = useState("Student");
@@ -46,6 +47,8 @@ const SignUp = () => {
   const [qfication, setQfication] = useState("");
   const [subs, setSubs] = useState([]);
   const navigation = useNavigation();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -176,6 +179,8 @@ const SignUp = () => {
     >
       <KeyboardAwareScrollView
         enableOnAndroid={true}
+        // keyboardShouldPersistTaps="handled"
+        scrollEnabled={!viewDropStates && !viewCourses && !viewSubs}
         keyboardShouldPersistTaps="handled"
         extraScrollHeight={100}
         style={SignupStyles.container}
@@ -227,28 +232,74 @@ const SignUp = () => {
           ) : null}
 
           <View>
-            <TextInput
-              style={SignupStyles.input}
-              placeholder="Password *"
-              placeholderTextColor="#888"
-              onChangeText={(text) => handleChange("password", text)}
-              secureTextEntry={true}
-            />
-            <Text>Minimum 8 characters 1 Alphabet 1 Numeric</Text>
+            <View>
+              <View style={{ position: "relative" }}>
+                <TextInput
+                  style={[SignupStyles.input, { paddingRight: 50 }]}
+                  placeholder="Password *"
+                  placeholderTextColor="#888"
+                  onChangeText={(text) => handleChange("password", text)}
+                  secureTextEntry={!showPassword}
+                />
+
+                <TouchableOpacity
+                  onPress={() => setShowPassword((prev) => !prev)}
+                  style={{
+                    position: "absolute",
+                    right: 15,
+                    top: 0,
+                    bottom: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <AntDesign
+                    name={showPassword ? "eye" : "eye-invisible"}
+                    size={20}
+                    color="#888"
+                  />
+                </TouchableOpacity>
+              </View>
+
+              <Text>Minimum 8 characters 1 Alphabet 1 Numeric</Text>
+            </View>
           </View>
           <View>
-            <TextInput
-              style={SignupStyles.input}
-              placeholder="Password Confirmation*"
-              placeholderTextColor="#888"
-              onChangeText={(text) =>
-                handleChange("password_confirmation", text)
-              }
-              secureTextEntry={true}
-            />
-            <Text>Minimum 8 characters 1 Alphabet 1 Numeric</Text>
+            <View>
+              <View style={{ position: "relative" }}>
+                <TextInput
+                  style={[SignupStyles.input, { paddingRight: 50 }]}
+                  placeholder="Password Confirmation*"
+                  placeholderTextColor="#888"
+                  onChangeText={(text) =>
+                    handleChange("password_confirmation", text)
+                  }
+                  secureTextEntry={!showConfirmPassword}
+                />
+
+                <TouchableOpacity
+                  onPress={() => setShowConfirmPassword((prev) => !prev)}
+                  style={{
+                    position: "absolute",
+                    right: 15,
+                    top: 0,
+                    bottom: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <AntDesign
+                    name={showConfirmPassword ? "eye" : "eye-invisible"}
+                    size={20}
+                    color="#888"
+                  />
+                </TouchableOpacity>
+              </View>
+
+              <Text>Minimum 8 characters 1 Alphabet 1 Numeric</Text>
+            </View>
           </View>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={SignupStyles.dropInputs}
             onPress={() => setViewDropStates(!viewDropStates)}
           >
@@ -266,7 +317,7 @@ const SignUp = () => {
               size={13}
               color="#888"
             />
-            {viewDropStates ? (
+            {/* {viewDropStates ? (
               <ScrollView nestedScrollEnabled style={SignupStyles.stateList}>
                 {states?.map((e, i) => (
                   <Text
@@ -286,26 +337,76 @@ const SignUp = () => {
                   </Text>
                 ))}
               </ScrollView>
-            ) : null}
-          </TouchableOpacity>
+            ) : null} */}
+          {/* {viewDropStates && (
+              <FlatList
+                data={states}
+                keyExtractor={(item) => item.id.toString()}
+                nestedScrollEnabled
+                keyboardShouldPersistTaps="handled"
+                style={SignupStyles.stateList}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setStateName(item.name);
+                      setViewDropStates(false);
+                      setStateId(item.id);
+                      setForm((prev) => ({
+                        ...prev,
+                        state_id: item.id,
+                      }));
+                    }}
+                  >
+                    <Text style={SignupStyles.state}>{item.name}</Text>
+                  </TouchableOpacity>
+                )}
+              />
+            )}
+          </TouchableOpacity> */}
+          <Dropdown
+            style={SignupStyles.dropdown}
+            containerStyle={SignupStyles.dropdownContainer}
+            placeholderStyle={SignupStyles.placeholderStyle}
+            selectedTextStyle={SignupStyles.selectedTextStyle}
+            itemTextStyle={SignupStyles.itemTextStyle}
+            dropdownPosition="top"
+            inverted={false}
+            data={states?.sort() || []}
+            labelField="name"
+            valueField="id"
+            placeholder="Select State"
+            value={stateid}
+            maxHeight={250}
+            onChange={(item) => {
+              setStateId(item.id);
+              setStateName(item.name);
+
+              setForm((prev) => ({
+                ...prev,
+                state_id: item.id,
+              }));
+            }}
+          />
           {role === "Teacher" ? (
-            <TouchableOpacity
-              style={SignupStyles.dropInputs}
-              onPress={() => setViewSubs(!viewSubs)}
-            >
-              <TextInput
-                style={SignupStyles.input}
-                placeholder="Select Subject"
-                placeholderTextColor="#888"
-                readOnly
-              />
-              <AntDesign
-                style={SignupStyles.icon}
-                name="down"
-                size={13}
-                color="#888"
+            <View>
+              <TouchableOpacity
+                style={SignupStyles.dropInputs}
                 onPress={() => setViewSubs(!viewSubs)}
-              />
+              >
+                <TextInput
+                  style={SignupStyles.input}
+                  placeholder="Select Subject"
+                  placeholderTextColor="#888"
+                  readOnly
+                />
+                <AntDesign
+                  style={SignupStyles.icon}
+                  name="down"
+                  size={13}
+                  color="#888"
+                  onPress={() => setViewSubs(!viewSubs)}
+                />
+              </TouchableOpacity>
               {viewSubs ? (
                 <ScrollView nestedScrollEnabled style={SignupStyles.stateList}>
                   {subject?.map((e, i) => (
@@ -335,7 +436,7 @@ const SignUp = () => {
                   ))}
                 </ScrollView>
               ) : null}
-            </TouchableOpacity>
+            </View>
           ) : (
             <TouchableOpacity
               onPress={() => setViewCourses(!viewCourses)}
@@ -356,7 +457,11 @@ const SignUp = () => {
                 onPress={() => setViewCourses(!viewCourses)}
               />
               {viewCourses ? (
-                <ScrollView nestedScrollEnabled style={SignupStyles.stateList}>
+                <ScrollView
+                  keyboardShouldPersistTaps="handled"
+                  nestedScrollEnabled
+                  style={SignupStyles.stateList}
+                >
                   {courses?.map((e, i) => (
                     <Text
                       style={SignupStyles.state}

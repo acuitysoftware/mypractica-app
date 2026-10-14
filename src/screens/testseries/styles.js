@@ -1,157 +1,158 @@
 import { Dimensions, StyleSheet } from "react-native";
-const fullheight = Dimensions.get('window').height
-const fullWidth = Dimensions.get('window').width
+const fullheight = Dimensions.get("window").height;
+const fullWidth = Dimensions.get("window").width;
 export const quizStyles = StyleSheet.create({
-    intros: {
-        alignItems: "center",
-        gap: 14
-    },
-    headimage: {
-        height: 120,
-        width: 120,
-        objectFit: "contain"
-    },
-    headinfo: {
-        width: "95%",
-        gap: 10,
-        flexDirection: "row",
-        paddingHorizontal: 10,
-        justifyContent: "center"
-    },
-    enrolled: {
-        fontFamily: "Poppins_400Regular",
-    },
-    lastupdt: {
-        fontFamily: "Poppins_400Regular",
-    },
-    quizname: {
-        marginTop: 20,
-        fontSize: 16,
-        fontFamily: "Poppins_600SemiBold"
-    },
-    submit: {
-        marginTop: 20,
-        width: 120,
-        backgroundColor: "#34C759",
-        borderRadius: 8,
-        paddingVertical: 10,
-        alignItems: "center"
-    },
-    noofquestions: {
-        marginTop: 30,
-        fontFamily: "Poppins_600SemiBold",
-        fontSize: 18
-    },
-    quizquestions: {
-        gap: 10,
-        marginTop: 10,
-    },
-    question: {
-        fontSize: 13,
-        fontFamily: "Poppins_600SemiBold"
-    },
-    answer: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 7,
-        paddingVertical: 10,
-        marginVertical: 6,
-        borderWidth: 1,
-        borderColor: "#DDDDDD",
-        paddingHorizontal: 5,
-        borderRadius: 5,
-    },
-    answerselect: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 7,
-        paddingVertical: 10,
-        marginVertical: 6,
-        borderWidth: 2,
-        borderColor: "#6565E2",
-        paddingHorizontal: 5,
-        backgroundColor: "#6565e2c7",
-        borderRadius: 5,
-    },
-    numb: {
-        width: 25,
-        height: 25,
-        backgroundColor: "#6565E2",
-        borderRadius: "50%",
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    pagination: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 15,
-        marginBottom: 30
-    },
-    pgn: {
-        paddingVertical: 10,
-        backgroundColor: "#6565E2",
-        width: 90,
-        alignItems: "center",
-        borderRadius: 5,
-    },
-    summary: {
-        position: "absolute",
-        height: fullheight + 60,
-        width: fullWidth,
-        zIndex: 1,
-        backgroundColor: "rgba(0, 0, 0, 0.34)",
-        alignItems: "center",
-    },
-    summaryBox: {
-        top: "20%",
-        paddingHorizontal: 20,
-        paddingVertical: 20,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#fff",
-        borderRadius: 10,
-        width: "90%",
-        gap: 10
-    },
-    text1: {
-        fontFamily: "Poppins_600SemiBold",
-        fontSize: 17
-    },
-    text2: {
-        fontFamily: "Poppins_600SemiBold",
-        fontSize: 14,
-        textAlign: "center"
-    },
-    sections: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 6,
-        width: "100%"
-    },
-    leftSection: {
-        width: "40%",
-        paddingVertical: 8,
-        borderWidth: 1,
-        borderColor: "#DBDBDB"
-    },
-    insidesectext: {
-        paddingHorizontal: 6,
-        fontFamily: "Poppins_400Regular",
-        fontSize: 12
-    },
-    summarybuttons: {
-        width: "100%",
-        flexDirection: "row",
-        gap: 6,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    summarybutt: {
-        width: "40%",
-        paddingVertical: 10,
-        backgroundColor: "#6565E2",
-        borderRadius: 5
-    }
-
-})
+  intros: {
+    alignItems: "center",
+    gap: 14,
+  },
+  headimage: {
+    height: 120,
+    width: 120,
+    objectFit: "contain",
+  },
+  headinfo: {
+    width: "95%",
+    gap: 10,
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    justifyContent: "center",
+  },
+  enrolled: {
+    fontFamily: "Poppins_400Regular",
+  },
+  lastupdt: {
+    fontFamily: "Poppins_400Regular",
+  },
+  quizname: {
+    marginTop: 20,
+    fontSize: 16,
+    fontFamily: "Poppins_600SemiBold",
+  },
+  submit: {
+    // marginTop: 20,
+    width: 120,
+    backgroundColor: "#34C759",
+    borderRadius: 8,
+    paddingVertical: 10,
+    alignItems: "center",
+    marginBottom: 30,
+  },
+  noofquestions: {
+    marginTop: 30,
+    fontFamily: "Poppins_600SemiBold",
+    fontSize: 18,
+  },
+  quizquestions: {
+    gap: 10,
+    marginTop: 10,
+  },
+  question: {
+    fontSize: 13,
+    fontFamily: "Poppins_600SemiBold",
+  },
+  answer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+    paddingVertical: 10,
+    marginVertical: 6,
+    borderWidth: 1,
+    borderColor: "#DDDDDD",
+    paddingHorizontal: 5,
+    borderRadius: 5,
+  },
+  answerselect: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+    paddingVertical: 10,
+    marginVertical: 6,
+    borderWidth: 2,
+    borderColor: "#6565E2",
+    paddingHorizontal: 5,
+    backgroundColor: "#6565e2c7",
+    borderRadius: 5,
+  },
+  numb: {
+    width: 25,
+    height: 25,
+    backgroundColor: "#6565E2",
+    borderRadius: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  pagination: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
+    marginBottom: 10,
+  },
+  pgn: {
+    paddingVertical: 10,
+    backgroundColor: "#6565E2",
+    minWidth: 90,
+    paddingHorizontal: 12,
+    alignItems: "center",
+    borderRadius: 5,
+  },
+  summary: {
+    position: "absolute",
+    height: fullheight + 60,
+    width: fullWidth,
+    zIndex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.34)",
+    alignItems: "center",
+  },
+  summaryBox: {
+    top: "20%",
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    width: "90%",
+    gap: 10,
+  },
+  text1: {
+    fontFamily: "Poppins_600SemiBold",
+    fontSize: 17,
+  },
+  text2: {
+    fontFamily: "Poppins_600SemiBold",
+    fontSize: 14,
+    textAlign: "center",
+  },
+  sections: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    width: "100%",
+  },
+  leftSection: {
+    width: "40%",
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: "#DBDBDB",
+  },
+  insidesectext: {
+    paddingHorizontal: 6,
+    fontFamily: "Poppins_400Regular",
+    fontSize: 12,
+  },
+  summarybuttons: {
+    width: "100%",
+    flexDirection: "row",
+    gap: 6,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  summarybutt: {
+    width: "40%",
+    paddingVertical: 10,
+    backgroundColor: "#6565E2",
+    borderRadius: 5,
+  },
+});
