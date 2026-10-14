@@ -184,7 +184,7 @@ const Test = ({ route }) => {
           <ActivityIndicator size="large" color="#6C63FF" />
         </View>
       ) : (
-        <ScrollView style={{ paddingHorizontal: 18 }}>
+        <ScrollView style={{ paddingHorizontal: 14 }}>
           <BackNav />
 
           <View style={quizStyles.intros}>
@@ -409,6 +409,7 @@ const Test = ({ route }) => {
                     style={{
                       color: "#fff",
                       fontFamily: "Poppins_400Regular",
+                      fontSize: 11,
                     }}
                   >
                     {loading ? "Submitting..." : "Submit Quiz"}
